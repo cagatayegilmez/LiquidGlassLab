@@ -24,7 +24,7 @@ The same tabs built with UIKit, every screen split into View, ViewModel, ViewMod
 
 ## Requirements
 
-- Xcode 27.0
+- Xcode 26
 - mise
 - SwiftLint
 
