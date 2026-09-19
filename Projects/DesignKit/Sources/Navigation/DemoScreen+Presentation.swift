@@ -37,6 +37,10 @@ public extension DemoScreen {
         "Demo \(title)"
     }
 
+    var prefersHorizontalBars: Bool {
+        self == .labConcentric
+    }
+
     var symbolName: String {
         switch self {
         case .portfolio:

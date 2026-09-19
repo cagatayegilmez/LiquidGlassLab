@@ -19,7 +19,9 @@ struct DemoTabView: View {
                 VStack(spacing: 0) {
                     Text(screen.headline)
                         .font(.largeTitle.bold())
-                        .containerRelativeFrame(.vertical)
+                        .containerRelativeFrame(.vertical) { height, _ in
+                            height * GlassTokens.headlineHeightFraction
+                        }
                     ForEach(releases) { release in
                         ReleaseRow(release: release)
                     }

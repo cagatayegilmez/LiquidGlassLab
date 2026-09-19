@@ -6,6 +6,7 @@ Liquid Glass webinar demo.
 - Used Swift Concurrency
 - Used iOS 26 Liquid Glass APIs with iOS 18 fallbacks
 - Used iOS 27 toolbar and tab APIs behind availability checks
+- Used iOS 27.1 iPhone Duo vertical bar APIs behind availability checks
 - No third party libraries needed
 
 Modules:
@@ -24,7 +25,7 @@ The same tabs built with UIKit, every screen split into View, ViewModel, ViewMod
 
 ## Requirements
 
-- Xcode 26
+- Xcode 27.1
 - mise
 - SwiftLint
 

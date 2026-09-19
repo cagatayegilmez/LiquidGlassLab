@@ -60,7 +60,7 @@ final class DemoTabView: UIView {
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 
-    /// Builds a plain list whose section header fills the visible height so the headline sits at the center.
+    /// Builds a plain list whose section header takes half of the visible height so the headline sits above the fold.
     ///
     /// - Returns: The compositional layout.
     private static func makeLayout() -> UICollectionViewLayout {
@@ -73,7 +73,9 @@ final class DemoTabView: UIView {
             let section = NSCollectionLayoutSection.list(using: configuration, layoutEnvironment: environment)
             let headerSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1),
-                heightDimension: .absolute(environment.container.effectiveContentSize.height)
+                heightDimension: .absolute(
+                    environment.container.effectiveContentSize.height * GlassTokens.headlineHeightFraction
+                )
             )
 
             section.boundarySupplementaryItems = [

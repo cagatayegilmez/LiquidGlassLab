@@ -30,6 +30,19 @@ struct LabView: View {
                 ShowcaseSwitchToolbarItem()
             }
         }
+        .modifier(VerticalBarBehaviorModifier(isDisabled: coordinator.labPath.last?.prefersHorizontalBars ?? false))
+    }
+}
+
+private struct VerticalBarBehaviorModifier: ViewModifier {
+    let isDisabled: Bool
+
+    func body(content: Content) -> some View {
+        if #available(iOS 27.1, *) {
+            content.toolbarVerticalBehavior(isDisabled ? .disabled : .automatic)
+        } else {
+            content
+        }
     }
 }
 
@@ -55,5 +68,16 @@ private struct LabDestination: View {
         }
         .navigationTitle(screen.title)
         .navigationBarTitleDisplayMode(.inline)
+        .modifier(VerticalBarCompressionModifier())
+    }
+}
+
+private struct VerticalBarCompressionModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        if #available(iOS 27.1, *) {
+            content.toolbarVerticalCompressionBehavior(.prefersToolbarItems)
+        } else {
+            content
+        }
     }
 }

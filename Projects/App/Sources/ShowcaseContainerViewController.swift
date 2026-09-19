@@ -27,6 +27,11 @@ final class ShowcaseContainerViewController: UIViewController {
         fatalError("init(coder:) is not supported")
     }
 
+    @available(iOS 27.1, *)
+    override var childForPreferredVerticalBarBehavior: UIViewController? {
+        activeShowcase
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -52,7 +57,7 @@ final class ShowcaseContainerViewController: UIViewController {
         guard let previous = activeShowcase, animated else {
             view.addSubview(next.view)
             next.didMove(toParent: self)
-            activeShowcase = next
+            activate(next)
             return
         }
 
@@ -62,7 +67,17 @@ final class ShowcaseContainerViewController: UIViewController {
             previous.removeFromParent()
             next.didMove(toParent: self)
         }
-        activeShowcase = next
+        activate(next)
+    }
+
+    /// Records the showcase on screen and lets the system re-read the bar preferences it forwards.
+    ///
+    /// - Parameter showcase: Showcase that now owns the screen.
+    private func activate(_ showcase: UIViewController) {
+        activeShowcase = showcase
+        if #available(iOS 27.1, *) {
+            setNeedsUpdateOfVerticalBarConfiguration()
+        }
     }
 
     /// Builds the root view controller of a showcase module.

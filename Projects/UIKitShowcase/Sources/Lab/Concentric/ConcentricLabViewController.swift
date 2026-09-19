@@ -22,6 +22,11 @@ final class ConcentricLabViewController: UIViewController {
         fatalError("init(coder:) is not supported")
     }
 
+    @available(iOS 27.1, *)
+    override var preferredVerticalBarBehavior: UIVerticalBarBehavior {
+        .disabled
+    }
+
     override func loadView() {
         view = ConcentricLabView(viewModel: viewModel)
     }

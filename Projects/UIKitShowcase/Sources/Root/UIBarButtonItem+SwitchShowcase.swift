@@ -21,6 +21,12 @@ extension UIBarButtonItem {
         let item = UIBarButtonItem(primaryAction: action)
 
         item.accessibilityLabel = "Switch to the \(current.counterpart.title) showcase"
+        if #available(iOS 27, *) {
+            item.visibilityPriority = .high
+        }
+        if #available(iOS 27.1, *) {
+            item.axisBehavior = .horizontalOnly
+        }
         return item
     }
 }

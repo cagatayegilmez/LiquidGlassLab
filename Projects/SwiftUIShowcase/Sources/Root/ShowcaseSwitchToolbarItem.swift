@@ -15,6 +15,16 @@ struct ShowcaseSwitchToolbarItem: ToolbarContent {
     private let current = ShowcaseKind.swiftui
 
     var body: some ToolbarContent {
+        if #available(iOS 27.1, *) {
+            switchItem
+                .axisBehavior(.horizontalOnly)
+                .visibilityPriority(.high)
+        } else {
+            switchItem
+        }
+    }
+
+    private var switchItem: some ToolbarContent {
         ToolbarItem(placement: .topBarLeading) {
             Button(current.title) {
                 coordinator.switchShowcase(current.counterpart)
