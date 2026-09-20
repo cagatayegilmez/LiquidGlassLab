@@ -73,6 +73,7 @@ public extension Target {
     ///   - name: Target and product name.
     ///   - bundleId: Bundle identifier of the app.
     ///   - sources: Source file globs of the app.
+    ///   - resources: Resource globs bundled with the app.
     ///   - dependencies: Modules the app links against.
     ///   - settings: Build settings of the target.
     /// - Returns: The app target.
@@ -80,6 +81,7 @@ public extension Target {
         name: String,
         bundleId: String,
         sources: SourceFilesList,
+        resources: ResourceFileElements? = nil,
         dependencies: [TargetDependency],
         settings: Settings? = nil
     ) -> Target {
@@ -91,6 +93,7 @@ public extension Target {
             deploymentTargets: BuildConstants.deploymentTargets,
             infoPlist: .sceneBasedApp,
             sources: sources,
+            resources: resources,
             dependencies: dependencies,
             settings: settings
         )

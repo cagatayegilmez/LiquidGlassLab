@@ -17,7 +17,9 @@ let project = Project(
             name: "LiquidGlassLab",
             bundleId: BuildConstants.bundleIdRoot,
             sources: ["Sources/**"],
-            dependencies: Feature.allCases.map(\.dependency)
+            resources: ["Sources/AppIcon.icon"],
+            dependencies: Feature.allCases.map(\.dependency),
+            settings: .shared(extending: ["ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon"])
         )
     ]
 )
